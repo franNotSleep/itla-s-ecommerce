@@ -5,11 +5,12 @@ import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignIn from "./pages/signin/SignIn";
 import SignUp from "./pages/signup/SignUp.tsx";
+import Home from "./pages/home/Home.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Home />,
   },
   {
     path: "/sign-in",
