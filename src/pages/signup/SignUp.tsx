@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 // import AppTheme from "../shared-theme/AppTheme";
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from "./CustomIcons";
 // import ColorModeSelect from "../shared-theme/ColorModeSelect";
@@ -60,6 +61,7 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignUp(props: { disableCustomTheme?: boolean }) {
+  const navigate = useNavigate();
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
   const [passwordError, setPasswordError] = React.useState(false);
@@ -110,12 +112,17 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
       return;
     }
     const data = new FormData(event.currentTarget);
-    console.log({
-      name: data.get("name"),
-      lastName: data.get("lastName"),
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        name: data.get("name"),
+        lastName: data.get("lastName"),
+        email: data.get("email"),
+        password: data.get("password"),
+      })
+    );
+
+    navigate("/");
   };
 
   return (
